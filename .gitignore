@@ -1,5 +1,3 @@
-# Ignore the Numpy_Practice directory
 Numpy_Practice/
-
-# Ignore the Pandas_Practice directory
 Pandas_Practice/
+.gitignore
