@@ -1,4 +1,4 @@
-# IMport required Libraries
+# Import required Libraries
 
 import streamlit as st
 import pandas as pd
@@ -146,3 +146,6 @@ fig.update_layout(title='Actual VS Predicted', xaxis_title='Date', yaxis_title='
 
 # Display the plot
 st.plotly_chart(fig)
+
+
+# TO RUN THIS APP: In terminal write command (streamlit run Forecasting_app.py)
