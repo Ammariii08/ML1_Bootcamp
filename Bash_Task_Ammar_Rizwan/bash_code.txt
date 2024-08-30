@@ -1,0 +1,29 @@
+# To replace Software with IT (sed 's/,pattern,/,replace with,/g') and store results in a temporary file
+
+sed 's/,Software,/,IT,/g' employees.txt > temp.txt
+
+# To remove all entries above age=30 (awk -F',' 'column_num_value >= req_value' temp_file > dest_file) 
+# and store results in a updated_employees file
+
+awk -F',' '$3 >= 30' temp.txt > updated_employees.txt
+
+# To save sum of salaries and count of departments. Then calculate average
+
+awk -F, '
+{
+    sum[$4] += $5;
+    count[$4]++;
+}
+END {
+    for (dept in sum) {
+        avg = sum[dept] / count[dept];
+        printf "\n%s: %d\n", dept, avg + 0.5;
+    }
+}' updated_employees.txt
+
+
+# remove the temporary file
+
+rm temp.txt
+
+
