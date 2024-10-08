@@ -1,0 +1,211 @@
+You are a professional python developer. You write code efficiently and without any error. You think out of the box and solve problems effectively and concisely with a skilled approach.
+
+
+
+
+
+
+
+
+***************************************************************************************************************************************************************************
+
+I have a base path = /additional/ammar/
+In this path I have 4 folder named: lang_dataset_samples, types, lang_40_types, lang_complete
+
+Each of these 4 folders has subfolders in this example structure:
+> lang_dataset_samples 
+>>>> doctype folder
+>>>>>>>> images folder, jsons folder, jsons_sorted folder, other folder etc.
+
+I need a python script that do the following:
+> create a new folder named dataset_final at path = /additional/ammar/
+
+> copy the content of all these 4 folders into dataset_final. Keep in mind the following things while doing so:
+>>> When one folder is copied into dataset_final, then dataset_final will also have a structure as described above.
+>>> When the 2nd folder is now copied into dataset_final, then you have to make sure the following things:
+>>>>>> see if a doctype folder in the 2nd folder already exists in dataset_final.
+>>>>>> if it already exists then don't make a new folder of same name in dataset_final. But, if there is any other new subfolder or files in doctype folder, copy them to that folder.
+For example:
+Copying the first folder "lang_dataset_sample" in dataset_final, different doctypes folders will be copied to it. One of them is lets say senegal_type_1.
+Now when copying "lang_40_types" folder in dataset_final, if senegal_type_1 already exists in dataset_final; don't make another folder with same name in dataset_final, but, if senegal_type_1 in 
+"lang_40_types" has some extra files or subfolders that were not already in dataset_final, only those will be copied to the already existing folder in dataset_final.
+>>>>>> also, if a file in any subfolder from senegal_type_1 of "lang_40_types" already exists in dataset_final, then dond't copy it again. This will ensure that there is no duplicates but only new files are copied.
+
+In this way, these 4 folders will be moved to dataset_final ensuring that there is no duplicate doctype folder and each and every file in them is moved to dataset_final without any duplicates.
+
+Write an efficient and simple and concise code for it.
+
+
+
+
+
+
+
+
+
+***************************************************************************************************************************************************************************
+
+Now, I have a combined dataset named dataset_final.
+In this dataset, I wanna make some updates.
+
+I have this function which converts document types to thier design names. This code is:
+
+
+
+If a document name let's say is: senegal_type_1; this code will return its design name which is: senegal_id_design_1.
+
+Now, I want you to apply this code on names of folders in dataset_final. For each folder, it will return its design name.
+
+Do the following things:
+> for each folder, check that if in the dataset_final, there is some folder named as its design name. For example: if folder name is "senegal_type_1", its design name given by code will be
+"senegal_id_design_1". Check that if "senegal_id_design_1" also exists in dataset_final. If it exists, then move all the content from "senegal_type_1" to the folder which exists as its
+design name "senegal_id_design_1". Ofcourse keep check of dupliactes. If there is some file in its subfolders that already exists in "senegal_id_design_1", then skip it.
+Now, all the content will be moved from type to design name folder, if design name folder existed in dataset_final (keeping check that no duplicate file exists).
+After that, remove the empty type name folder "senegal_type_1" from dataset_final.
+
+> for each folder, if its design name is same as type name; for example: if folder name is "abudhabi_id_design_1", and its design that we get from code is also "abudhabi_id_design_1", then
+it will remain as it is.
+
+So at the end we got dataset_final in which for each folder name whose design name is not same as folder name itself and its design folder also existed; moved the data from folder to design name
+folder and remove the emptied foler, also ensuring that no dupliactes existed. 
+Also, print the folder names whose data has been moved to which folder.
+
+Write an efficient and simple and concise code for it.
+
+
+
+
+
+
+
+
+***************************************************************************************************************************************************************************
+
+Now, I have 3 json files at path = /additional/ammar/
+These three files are named: train.json, test.json, and val.json
+
+Each of these 3 jsons have data in this example format below:
+
+{
+"senegal_type_1": {
+"jjdeggdeh21y631298378qewhdbjg382.json": {
+"text": """""",
+"responses": {
+"first_name": "",
+"middle_name": "",
+}
+},
+"127y3289e128ywghdasb.json": {
+"text": """""",
+"responses": {
+"first_name": "",
+"middle_name": "",
+}
+}},
+
+"abudhabi_id_design_1": {
+"gfdsgiuewiwqio.json": {
+"text": """""",
+"responses": {
+"first_name": "",
+"middle_name": "",
+}
+},
+"32972843eudhjksxnmasnbdxnas.json": {
+"text": """""",
+"responses": {
+"first_name": "",
+"middle_name": "",
+}
+}},
+
+"senegal_id_design_1": {
+"gfdsgiuewiwqio.json": {
+"text": """""",
+"responses": {
+"first_name": "",
+"middle_name": "",
+}
+},
+"32972843eudhjksxnmasnbdxnas.json": {
+"text": """""",
+"responses": {
+"first_name": "",
+"middle_name": "",
+}
+}}
+}
+
+
+> As you can see in the structure of json, that keys are doctypes e.g. "senegal_type_1". The keys have further dictionary for jsons in it whose id is also a key, and then that
+id has its text and responses etc which vary for each.
+
+You have to make 3 new json files named: train2.json, test2.json, and val2.json. 
+To make these files, use the following rules:
+
+> Use the same code that I provided you to convert name to design name.
+> convert each key to its design name.
+> see if that design name also exists in json file. If it is, then move the content to design name key and remove the empty key.
+For example: as seen in structure, "senegal_type_1" key and "senegal_id_design_1" (which is its design name), both exists. so move the content of "senegal_type_1" to "senegal_id_design_1"
+and remove "senegal_type_1". "senegal_id_design_1" will now have 4 ids in it (2 were already in it, and 2 new which are move from "senegal_type_1") and "senegal_type_1" key is removed.
+Also ensure that no duplicate ids are moved to "senegal_id_design_1".
+> if a key name is same as its design name we got from code, then keep it as it is.
+> also print in notebook that which keys content are moved to which design name key
+
+At the end, we will have 3 new jsons named: train2.json, test2.json, and val2.json in which keys names are converted to design names and no duplicates are ensured while moving.
+
+Write an efficient and simple and concise code for it.
+
+
+
+
+
+***************************************************************************************************************************************************************************
+
+Finally, now that I have dataset_final and 3 new jsons, I want to get thier counts and make a csv of these counts.
+Keep the following rules in mind while doing so:
+
+> first, get all the folder names in dataset_final.
+> check which of them exists in train2, test2, and val2 jsons.
+> print which names are in dataset_final and are not in jsons.
+> print which names are both in dataset_final and in jsons.
+> print which of them are in jsons and not in dataset_final
+
+>> Now, make a function for counts.
+>> For each folder in dataset_final, 6 counts will be calculated: images_count, jsons_count and jsons_sorted_count also number of ids of that name in test2, train2 and val2 jsons.
+>> print the counts in following format:
+
+************************************************************************************************************************
+Total images:  |images_count|		Total jsons:  |jsons_count|		Total jsons_sorted: |jsons_sorted_count|
+************************************************************************************************************************
+
+Document name: Senagal_id_design_1
+		
+		Images: |images_count in this folder|	Jsons: |jsons_count in this folder|  Jsons_sorted: |jsons_sorted_count in this folder|  Train: |count of ids of this key name (if exists) in train2 json|  Test: |count of ids of this key name (if exists) in test2 json|  Val: |count of ids of this key name (if exists) in val2 json|
+
+Document name: abudhabi_id_design_1
+		
+		Images: |images_count in this folder|	Jsons: |jsons_count in this folder|  Jsons_sorted: |jsons_sorted_count in this folder|  Train: |count of ids of this key name (if exists) in train2 json|  Test: |count of ids of this key name (if exists) in test2 json|  Val: |count of ids of this key name (if exists) in val2 json|
+
+>> for those keys that don't exist in dataset folder, just print thier count of ids in test train and val.
+
+
+> At the end make a csv file having these columns: design, type images, jsons, jsons_sorted, train, test, val
+for design and type use the codes below:
+This code is used to get the design name if type name is given:
+
+This code is used to get the type name if design name is given:
+
+* Example1: for "Senegal_type_1", it's design name from code will be lets say "sengal_id_design_1", and its type name will be same "Senagal_type_1". Then in design column we will have
+"sengal_id_design_1" and in type column we will have "Senegal_type_1".
+* Example2: for "US_design_1", it's design name from code will be lets say "US_design_1", and its type name will be same "US_type_1". Then in design column we will have "US_design_1" 
+and in type column we will have a hyphen '-' because it's type name is same as design name.
+* Example3: for "UAE_type_1", it's design name from code will be lets say "UAE_type_1", and its type name will be same "UAE_type_1". Then in design column we will have a hyphen '-' 
+and in type column we will have a hyphen 'UAE_type_1' because it's design name is same as type name.
+
+
+
+
+
+
+
